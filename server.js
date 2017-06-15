@@ -1,7 +1,6 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
-
 // Require the Note and Article JS files
 var Note = require("./models/note.js");
 var Article = require("./models/article.js");
@@ -37,7 +36,7 @@ db.once("open", function(){
 
 // Routes
 expressthat.get("/scrape", function(req, res){
-    request("https://www.echojs.com", function(error, response, html){
+    request("http://www.echojs.com", function(error, response, html){
         var $ = cheerio.load(html);
         $("article h2").each(function(i, element){
             var result = {};
@@ -53,10 +52,11 @@ expressthat.get("/scrape", function(req, res){
                     console.log(doc);
                 }
             });
-            res.send("Your articles are scraped, saved and completed");
         });
-        });
-})
+    });
+                res.send("Your articles are scraped, saved and completed");
+
+});
 
 
 expressthat.get("/articles", function(req, res) {

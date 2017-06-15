@@ -1,9 +1,4 @@
 //Grab the saved articles as a json object
-$.getJSON("/articles", function(data) {
-  for (var i = 0; i < data.length; i++) {
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-  }
-});
 
 // $(document).on("click", "p", function() {
 //   // Empty the contents of the note
@@ -30,7 +25,7 @@ $.getJSON("/articles", function(data) {
 //       }
 //     });
 // });
-// When you save a note
+// // When you save a note
 // $(document).on("click", "#savenote", function() {
 //   // Grab the id associated with the article from the submit button
 //   var thisId = $(this).attr("data-id");
