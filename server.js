@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 // Require the Note and Article JS files
 var Note = require("./models/note.js");
 var Article = require("./models/article.js");
-
+var PORT = process.env.PORT || 3000;
 // Require the scraping packages
 var request = require("request");
 var cheerio = require("cheerio");
@@ -80,6 +80,7 @@ expressthat.get("/articles", function(req, res) {
 //     })
 
 // })
-expressthat.listen(3000, function(){
+expressthat.listen(PORT, function(){
     console.log("Your app is running on port 3000!");
 })
+
