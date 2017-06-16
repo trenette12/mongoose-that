@@ -67,8 +67,8 @@
         <!-- Navigation Link -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Saved Articles <span class="sr-only">(current)</span></a></li>
-            <li id="savedarticles"><a href="#">Search for New Articles</a></li>
+            <li id="savedarticles"><a href="#">Saved Articles <span class="sr-only">(current)</span></a></li>
+            <li id="searcharticles"><a href="#">Search for New Articles</a></li>
           </ul>
         </div>
       </div>
@@ -76,7 +76,6 @@
     <!-- Jumbotron -->
     <div class="jumbotron">
       <h1>Mongoose Your Articles!</h1>
-      <p>...</p>
     </div>
   </div>
   <div>
@@ -93,14 +92,33 @@
 </div>
   </div>
 <script>
-  $("#savedarticles").on("click", function(){
+  $("#searcharticles").on("click", function(){
 $.get("/articles", function(data) {
   for (var i = 0; i < data.length; i++) {
-    $("#articles").append('<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">' + data[i].title + '</h3></div><div class="panel-body">'+ data[i].link + '</div></div>'
+    $("#articles").append('<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">' + data[i].title + '</h3></div><div class="panel-body">'+ data[i].link + '</div></div><div class="btn-group" role="group" aria-label="..."><button type="button" class="btn btn-default" id="save">Save</button><br><br><br></div>'
     )}
 });
   $("#emptyarticle").hide();
 })
+
+  $("#save").on("click", function(){
+    $.post("/saved", function(data){
+      for (var i = 0; i < data.length; i++) {
+      $("#articles").html('<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">' + data[i].title + '</h3></div><div class="panel-body">'+ data[i].link + '</div></div><div class="btn-group" role="group" aria-label="..."><button type="button" class="btn btn-default" id="save">Save</button></div>'
+    )}
+    });
+  })
+
+    $("#savedarticles").on("click", function(){
+$.get("/saved", function(data) {
+  for (var i = 0; i < data.length; i++) {
+    $("#saved").html('<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">' + data[i].title + '</h3></div><div class="panel-body">'+ data[i].link + '</div></div><div class="btn-group" role="group" aria-label="..."><button type="button" class="btn btn-default" id="save">Save</button><br></div>'
+    )}
+});
+  $("#emptyarticle").hide();
+  $("#articles").hide();
+})
+
 
   </script>
 </body>

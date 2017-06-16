@@ -70,16 +70,27 @@ expressthat.get("/articles", function(req, res) {
   });
 });
 
-// expressthat.get("/saved", function(req,res){
-//     Article.find({}, function(error, doc){
-//         if(error){
-//             console.log(error);
-//         } else {
-//             res.json(doc);
-//         }
-//     })
+expressthat.get("/saved", function(req,res){
+    Article.find({}, function(error, doc){
+        if(error){
+            console.log(error);
+        } else {
+            res.json(doc);
+        }
+    })
 
-// })
+})
+
+expressthat.post("/saved", function(req,res){
+    Article.save(function(error, doc){
+        if(error){
+            console.log(error);
+        } else {
+            res.send(doc);
+        }
+    })
+
+})
 expressthat.listen(PORT, function(){
     console.log("Your app is running on port 3000!");
 })
