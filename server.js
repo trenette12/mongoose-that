@@ -24,7 +24,7 @@ expressthat.use(bodyParser.urlencoded({
 expressthat.use(express.static("public"));
 
 // Database config
-mongoose.connect('mongodb://127.0.0.1:27017/mongooseUrl');
+mongoose.connect('mongodb://heroku_g9zbph7b:b4c2mt39ln89sbemd1achnvsjk@ds127962.mlab.com:27962/heroku_g9zbph7b');
 var db = mongoose.connection;
 
 db.on("error", function(error){
